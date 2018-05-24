@@ -1,1 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+body {
+    font-size: 14px;
+    font-family: "Helvetica Neue", "Arial", "sans-serif";
+    max-width: 1000px;
+    margin: 0 auto;
+    align-content: center
+}
+
+button {
+    width: 100px;
+    background: orange;
+    margin-right: 10px;
+    border: 0px solid #00AA66;
+}
