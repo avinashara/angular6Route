@@ -4,10 +4,10 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class TestServiceService {
-  source: ['linkedin', 'github', 'naukri', 'shine', 'career portal'];
-  city: ['bangalore', 'kolkata', 'New Delhi', 'noida', 'hyderabad', 'pune'];
-  skills: ['angularjs', 'html', 'css3', 'json', 'restapi'];
-  data: [
+  source= ['linkedin', 'github', 'naukri', 'shine', 'career portal'];
+  city= ['bangalore', 'kolkata', 'New Delhi', 'noida', 'hyderabad', 'pune'];
+  skills= ['angularjs', 'html', 'css3', 'json', 'restapi'];
+  data=[
     {
       id: 1
       , name: 'User 1'
@@ -60,48 +60,48 @@ export class TestServiceService {
   ];
   getSource() {
     return Object.assign({}, this.source);
-  };
+  }
   getCity() {
     return Object.assign({}, this.city);
-  };
+  }
   getSkills() {
     return Object.assign({}, this.skills);
   }
   getData() {
-    return Object.assign({}, this.data);
+    return this.data;
   }
 
   setUserData(skillSets, source, city) {
-    localStorage.setItem('skillSets', JSON.stringify(skillSets));
-    localStorage.setItem('source', JSON.stringify(source));
-    localStorage.setItem('city', JSON.stringify(city));
-  };
+    localStorage.setItem('skillSets', skillSets);
+    localStorage.setItem('source', source);
+    localStorage.setItem('city', city);
+  }
   getUserData() {
     return {
-      skills: this.tranfromData(JSON.parse(localStorage.getItem('skillSets')))
-      , src: this.tranfromData(JSON.parse(localStorage.getItem('source')))
-      , city: this.tranfromData(JSON.parse(localStorage.getItem('city')))
+      skills: localStorage.getItem('skillSets')
+      , src: localStorage.getItem('source')
+      , city: localStorage.getItem('city')
     }
   }
   getSummary(data) {
     var filter = this.getUserData()
       , rows = [];
-    this.getData().forEach(function (obj) {
-      filter.skills.forEach(function (skill) {
-        if (obj.skills.includes(skill.toLowerCase()) && filter.src.includes(obj.source.toLowerCase()) && filter.city.includes(obj.city.toLowerCase())) {
-          let object = Object.assign({}, obj);
-          Object.defineProperty(object, "skillSets", filter.skills.join(' & '));
-          rows = rows.filter(function (o) {
-            return o.id !== object.id;
-          })
-          rows.push(object);
-        }
-      })
-    })
-    return rows;
-  };
+//    this.getData().forEach(function (obj) {
+//      filter.skills.forEach(function (skill) {
+//        if (obj.skills.includes(skill.toLowerCase()) && filter.src.includes(obj.source.toLowerCase()) && filter.city.includes(obj.city.toLowerCase())) {
+//          let object = Object.assign({}, obj);
+//          Object.defineProperty(object, "skillSets", filter.skills.join(' & '));
+//          rows = rows.filter(function (o) {
+//            return o.id !== object.id;
+//          })
+//          rows.push(object);
+//        }
+//      })
+//    })
+    return  this.getData();
+  }
   tranfromData(array) {
-    var a = [];
+    let a:any[];
     array.forEach(function (obj) {
       a.push(obj.text);
     });

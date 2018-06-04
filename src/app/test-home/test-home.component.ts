@@ -1,5 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input,ViewChild } from '@angular/core';
 import { TestServiceService } from '../test-service.service';
+import { Router } from '@angular/router';
+import {CreateNewAutocompleteGroup, SelectedAutocompleteItem, NgAutocompleteComponent} from "ng-auto-complete";
 
 @Component({
   selector: 'app-test-home',
@@ -14,7 +16,27 @@ export class TestHomeComponent implements OnInit {
   @Input() source;
   @Input() city;
   tags = [];
-  constructor(private service: TestServiceService) { }
+@ViewChild(NgAutocompleteComponent) public completer: NgAutocompleteComponent;
+ 
+public group = [
+        CreateNewAutocompleteGroup(
+            'Search / choose in / from list',
+            'completer',
+            [
+                {title: 'Option 1', id: '1'},
+                {title: 'Option 2', id: '2'},
+                {title: 'Option 3', id: '3'},
+                {title: 'Option 4', id: '4'},
+                {title: 'Option 5', id: '5'},
+            ],
+            {titleKey: 'title', childrenKey: null}
+        ),
+    ];
+Selected(item: SelectedAutocompleteItem) {
+        console.log(item);
+    }
+    
+  constructor(private service: TestServiceService, private router: Router) { }
 
   ngOnInit() {
     this.sourceArray = this.service.getSource();
@@ -23,5 +45,6 @@ export class TestHomeComponent implements OnInit {
   }
   submit() {
     this.service.setUserData(this.skills, this.source, this.city);
+     this.router.navigateByUrl('/summary');    
   }
 }

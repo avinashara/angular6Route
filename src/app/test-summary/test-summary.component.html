@@ -1,22 +1,20 @@
-<div class="row row-margin col-md-12">
-    <h3>Search Filter</h3>
-    <div class="row">
-        <div class="header">
-            <div class="form-group col-md-4">
-                <label for="email">Skillsets:</label>
-                <input type="text" class="form-control" id="skillset" placeholder="Enter required skills sets" ng-change="smCtrl.change()" name="skillset" ng-model="smCtrl.userData.skills"> </div>
-            <div class="form-group col-md-4">
-                <label for="pwd">Source:</label>
-                <input type="text" class="form-control" id="source" placeholder="select source" name="source" ng-change="smCtrl.change()" ng-model="smCtrl.userData.src"> </div>
-            <div class="form-group col-md-4">
-                <label for="pwd">City:</label>
-                <input type="text" class="form-control" id="city" placeholder="Select city" name="city" ng-change="smCtrl.change()" ng-model="smCtrl.userData.city"> </div>
-        </div>
+<div class="row row-margin">
+    <h3 class="header-for">Search Filter</h3>
+    <div class="row col-md-12">
+        <div class="form-group col-md-4 float-right">
+            <label for="email">Skillsets:</label>
+            <input type="text" class="form-control" id="skillset" placeholder="Enter required skills sets" (change)="change()" name="skillset" [(ngModel)]="skills"> </div>
+        <div class="form-group col-md-4 float-right">
+            <label for="pwd">Source:</label>
+            <input type="text" class="form-control" id="source" placeholder="select source" name="source" (change)="change()" [(ngModel)]="src"> </div>
+        <div class="form-group col-md-4">
+            <label for="pwd">City:</label>
+            <input type="text" class="form-control" id="city" placeholder="Select city" name="city" (change)="change()" [(ngModel)]="city"> </div>
     </div>
 </div>
 <div class="row row-margin col-md-12" *ngIf="rows.length ===0"> <strong>No records found.</strong> </div>
-<div class="row row-margin col-md-12 tableBodyScroll" ng-if="smCtrl.rows.length >0">
-    <table class="tableWidth">
+<div class="row row-margin col-md-12 tableBodyScroll" ng-if="rows.length >0">
+    <table class="table table-striped">
         <thead>
             <tr>
                 <th class="col-xs-2">Id</th>
@@ -27,7 +25,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="row in smCtrl.rows">
+            <tr *ngFor="let row of rows">
                 <td class="col-xs-2">{{row.id}}</td>
                 <td class="col-xs-2">{{ row.name }}</td>
                 <td class="col-xs-2">{{ row.skills}}</td>
