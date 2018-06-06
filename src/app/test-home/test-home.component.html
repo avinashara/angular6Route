@@ -4,27 +4,24 @@
         <div ng-class="{'has-success':!myForm.skill.$valid}">
             <label for="email">Skillsets:</label>
             <input type="text" [(ngModel)]="skills" required name="skill" placeholder="Skill sets" class="form-control" #skill="ngModel">
-            <!-- <tags-input [(ngModel)]="skills" required name="skill" placeholder="Skill sets">
-        <auto-complete source="skillArray"></auto-complete>
-      </tags-input> --><span style="color:red" *ngIf="skill.invalid && (skill.dirty || skill.touched)">
-        <span *ngIf="skill.errors.required">Skill sets is required.</span> </span>
+            <span style="color:red" *ngIf="skill.invalid && (skill.dirty || skill.touched)">
+                <span *ngIf="skill.errors.required">Skill sets is required.</span>
+            </span>
         </div>
         <div class="form-group" ng-class="{'has-success':myForm.sources.$valid}">
             <label for="pwd">Source:</label>
             <input type="text" [(ngModel)]="source" required name="sources" placeholder="Source" class="form-control" #sources="ngModel">
-            <!-- <tags-input [(ngModel)]="source" required name="source" placeholder="Source">
-        <auto-complete source="sourceArray"></auto-complete>
-      </tags-input> --><span style="color:red" *ngIf="sources.invalid && (sources.dirty || sources.touched)">
-        <span *ngIf="sources.errors.required">Source is required.</span> </span>
+            <span style="color:red" *ngIf="sources.invalid && (sources.dirty || sources.touched)">
+                <span *ngIf="sources.errors.required">Source is required.</span>
+            </span>
         </div>
         <div class="form-group" ng-class="{'has-success':myForm.citys.$valid}">
             <label for="pwd">City:</label>
             <input type="text" [(ngModel)]="city" required name="citys" placeholder="City" class="form-control" #citys="ngModel">
-            <!-- <tags-input [(ngModel)]="city" required name="city" placeholder="City">
-        <auto-complete source="cityArray"></auto-complete>
-      </tags-input> --><span style="color:red" *ngIf="citys.invalid && (citys.dirty || citys.touched)">
-                 <span *ngIf="citys.errors.required">City is required.</span> </span>
+            <span style="color:red" *ngIf="citys.invalid && (citys.dirty || citys.touched)">
+                <span *ngIf="citys.errors.required">City is required.</span>
+            </span>
         </div>
-        <button type="button" class="btn btn-default" (click)="submit()" [disabled]="myForm .form.invalid">Submit</button>
+        <button type="button" class="btn btn-default" (click)="submit()" [disabled]="myForm.form.invalid">Submit</button>
     </form>
 </section>

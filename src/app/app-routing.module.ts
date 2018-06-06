@@ -4,9 +4,9 @@ import { TestSummaryComponent } from './test-summary/test-summary.component';
 import { TestHomeComponent } from './test-home/test-home.component';
 
 const routes: Routes = [
-    { path: '', redirectTo: 'home', pathMatch: 'full' },
-    { path: 'summary', component: TestSummaryComponent },
-    { path: 'home', component: TestHomeComponent }
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'summary', component: TestSummaryComponent },
+  { path: 'home', component: TestHomeComponent }
 ];
 
 @NgModule({
@@ -14,4 +14,4 @@ const routes: Routes = [
   exports: [RouterModule],
   providers: []
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

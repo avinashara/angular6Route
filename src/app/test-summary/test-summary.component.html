@@ -3,17 +3,21 @@
     <div class="row col-md-12">
         <div class="form-group col-md-4 float-right">
             <label for="email">Skillsets:</label>
-            <input type="text" class="form-control" id="skillset" placeholder="Enter required skills sets" (change)="change()" name="skillset" [(ngModel)]="skills"> </div>
+            <input type="text" class="form-control" id="skillset" placeholder="Enter required skills sets" (ngModelChange)="change()"
+                name="skillset" [(ngModel)]="skills"> </div>
         <div class="form-group col-md-4 float-right">
             <label for="pwd">Source:</label>
-            <input type="text" class="form-control" id="source" placeholder="select source" name="source" (change)="change()" [(ngModel)]="src"> </div>
+            <input type="text" class="form-control" id="source" placeholder="select source" name="source" (ngModelChange)="change()"
+                [(ngModel)]="src"> </div>
         <div class="form-group col-md-4">
             <label for="pwd">City:</label>
-            <input type="text" class="form-control" id="city" placeholder="Select city" name="city" (change)="change()" [(ngModel)]="city"> </div>
+            <input type="text" class="form-control" id="city" placeholder="Select city" name="city" (ngModelChange)="change()" [(ngModel)]="city"> </div>
     </div>
 </div>
-<div class="row row-margin col-md-12" *ngIf="rows.length ===0"> <strong>No records found.</strong> </div>
-<div class="row row-margin col-md-12 tableBodyScroll" ng-if="rows.length >0">
+<div class="row row-margin col-md-12" *ngIf="rows.length == 0">
+    <strong class="red-text">No records found.</strong>
+</div>
+<div class="row row-margin col-md-12 tableBodyScroll" *ngIf="rows.length >0">
     <table class="table table-striped">
         <thead>
             <tr>

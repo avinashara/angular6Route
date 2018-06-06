@@ -4,10 +4,10 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class TestServiceService {
-  source= ['linkedin', 'github', 'naukri', 'shine', 'career portal'];
-  city= ['bangalore', 'kolkata', 'New Delhi', 'noida', 'hyderabad', 'pune'];
-  skills= ['angularjs', 'html', 'css3', 'json', 'restapi'];
-  data=[
+  source = ['linkedin', 'github', 'naukri', 'shine', 'career portal'];
+  city = ['bangalore', 'kolkata', 'New Delhi', 'noida', 'hyderabad', 'pune'];
+  skills = ['angularjs', 'html', 'css3', 'json', 'restapi'];
+  data = [
     {
       id: 1
       , name: 'User 1'
@@ -59,16 +59,16 @@ export class TestServiceService {
     }
   ];
   getSource() {
-    return Object.assign({}, this.source);
+    return Object.assign([], this.source);
   }
   getCity() {
-    return Object.assign({}, this.city);
+    return Object.assign([], this.city);
   }
   getSkills() {
-    return Object.assign({}, this.skills);
+    return Object.assign([], this.skills);
   }
   getData() {
-    return this.data;
+    return Object.assign([], this.data);
   }
 
   setUserData(skillSets, source, city) {
@@ -81,27 +81,20 @@ export class TestServiceService {
       skills: localStorage.getItem('skillSets')
       , src: localStorage.getItem('source')
       , city: localStorage.getItem('city')
-    }
+    };
   }
-  getSummary(data) {
-    var filter = this.getUserData()
-      , rows = [];
-//    this.getData().forEach(function (obj) {
-//      filter.skills.forEach(function (skill) {
-//        if (obj.skills.includes(skill.toLowerCase()) && filter.src.includes(obj.source.toLowerCase()) && filter.city.includes(obj.city.toLowerCase())) {
-//          let object = Object.assign({}, obj);
-//          Object.defineProperty(object, "skillSets", filter.skills.join(' & '));
-//          rows = rows.filter(function (o) {
-//            return o.id !== object.id;
-//          })
-//          rows.push(object);
-//        }
-//      })
-//    })
-    return  this.getData();
+  getSummary() {
+    let filter = this.getUserData();
+    let rows = [];
+    for (var value of this.data) {
+      if (value.skills.includes(filter.skills.toLowerCase()) && value.source === filter.src.toLowerCase() && value.city === filter.city.toLowerCase()) {
+        rows.push(value);
+      }
+    }
+    return rows;
   }
   tranfromData(array) {
-    let a:any[];
+    let a: any[];
     array.forEach(function (obj) {
       a.push(obj.text);
     });
